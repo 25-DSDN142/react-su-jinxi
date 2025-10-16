@@ -17,6 +17,8 @@ image(bgImage, 0, 0, width, height);
       drawPoints(hand)
       drawConnections(hand)
     }
+
+
     // console.log(hand);
     let indexFingerTipX = hand.index_finger_tip.x;
     let indexFingerTipY = hand.index_finger_tip.y;
@@ -28,7 +30,47 @@ image(bgImage, 0, 0, width, height);
    let middleFingerTipX = hand.middle_finger_tip.x;
    let middleFingerTipY = hand.middle_finger_tip.y;
    let HandSize=dist(middleFingerMcpX, middleFingerMcpY, middleFingerTipX, middleFingerTipY)
-   fill(255, 255, 255, 180)
+   
+       let fingers = [
+      ['thumb', 'thumb_cmc', 'thumb_mcp', 'thumb_ip', 'thumb_tip', '👻'],
+      ['index', 'index_finger_mcp', 'index_finger_pip', 'index_finger_dip', 'index_finger_tip', '😈'],
+      ['middle', 'middle_finger_mcp', 'middle_finger_pip', 'middle_finger_dip', 'middle_finger_tip', '💀'],
+      ['ring', 'ring_finger_mcp', 'ring_finger_pip', 'ring_finger_dip', 'ring_finger_tip', '🎃'],
+      ['pinky', 'pinky_finger_mcp', 'pinky_finger_pip', 'pinky_finger_dip', 'pinky_finger_tip', '☠️']
+    ];
+
+    let extendedFingers=0;
+
+    for (let f = 0; f < fingers.length; f++) {
+      let base = hand[fingers[f][1]];
+      let mid = hand[fingers[f][2]];
+      let tip = hand[fingers[f][4]];
+      let emoji = fingers[f][5];
+
+      let distBaseTip = dist(base.x, base.y, tip.x, tip.y);
+      
+      if (distBaseTip  > 50) {
+        extendedFingers++;
+
+  // fingers
+   fill(255, 255, 255,120);
+   noStroke();
+   circle(tip.x, tip.y, 10);
+
+  // emoji
+   textSize(36);
+   textAlign(CENTER, CENTER);
+   text(emoji, tip.x, tip.y - 20);
+  }
+
+   stroke(0)
+   strokeWeight(5)
+   noFill()
+   line(base.x, base.y, mid.x, mid.y)
+   line(mid.x, mid.y, tip.x, tip.y)
+}
+   
+   fill(255, 255, 255, 120)
    stroke(0)
    strokeWeight(8)
    ellipse(middleFingerMcpX, middleFingerMcpY, HandSize*0.8, HandSize)
@@ -77,12 +119,14 @@ image(bgImage, 0, 0, width, height);
     let faceWidth = face.faceOval.width;
     let faceheight = face.faceOval.height;
     //face
-    fill(255, 255, 255, 180)
+    fill(255, 255, 255, 120)
     stroke(0)
     strokeWeight(8)
     beginShape();
     vertex(face.keypoints[10].x, face.keypoints[10].y);
-    bezierVertex(face.keypoints[67].x, face.keypoints[67].y,face.keypoints[103].x, face.keypoints[103].y,face.keypoints[21].x, face.keypoints[21].y);
+    bezierVertex(face.keypoints[109].x, face.keypoints[109].y,face.keypoints[109].x, face.keypoints[109].y,face.keypoints[67].x, face.keypoints[67].y); 
+    bezierVertex(face.keypoints[103].x, face.keypoints[103].y,face.keypoints[103].x, face.keypoints[103].y,face.keypoints[54].x, face.keypoints[54].y); 
+    bezierVertex(face.keypoints[21].x, face.keypoints[21].y,face.keypoints[21].x, face.keypoints[21].y,face.keypoints[162].x, face.keypoints[162].y);
     bezierVertex(face.keypoints[127].x, face.keypoints[127].y,face.keypoints[234].x, face.keypoints[234].y,face.keypoints[132].x, face.keypoints[132].y);
     bezierVertex(face.keypoints[58].x, face.keypoints[58].y,face.keypoints[172].x, face.keypoints[172].y,face.keypoints[136].x, face.keypoints[136].y);
     bezierVertex(face.keypoints[169].x, face.keypoints[169].y,face.keypoints[210].x, face.keypoints[210].y,face.keypoints[211].x, face.keypoints[211].y);
@@ -94,15 +138,17 @@ image(bgImage, 0, 0, width, height);
     bezierVertex(face.keypoints[430].x, face.keypoints[430].y,face.keypoints[430].x, face.keypoints[430].y,face.keypoints[394].x, face.keypoints[394].y);
     bezierVertex(face.keypoints[364].x, face.keypoints[364].y,face.keypoints[364].x, face.keypoints[364].y,face.keypoints[365].x, face.keypoints[365].y);
     bezierVertex(face.keypoints[397].x, face.keypoints[397].y,face.keypoints[288].x, face.keypoints[288].y,face.keypoints[361].x, face.keypoints[361].y);
-    bezierVertex(face.keypoints[454].x, face.keypoints[454].y,face.keypoints[356].x, face.keypoints[356].y,face.keypoints[251].x, face.keypoints[251].y);
-    bezierVertex(face.keypoints[332].x, face.keypoints[332].y,face.keypoints[297].x, face.keypoints[297].y,face.keypoints[10].x, face.keypoints[10].y);
+    bezierVertex(face.keypoints[454].x, face.keypoints[454].y,face.keypoints[356].x, face.keypoints[356].y,face.keypoints[389].x, face.keypoints[389].y);
+    bezierVertex(face.keypoints[251].x, face.keypoints[251].y,face.keypoints[251].x, face.keypoints[251].y,face.keypoints[284].x, face.keypoints[284].y);
+    bezierVertex(face.keypoints[332].x, face.keypoints[332].y,face.keypoints[332].x, face.keypoints[332].y,face.keypoints[297].x, face.keypoints[297].y);
+    bezierVertex(face.keypoints[338].x, face.keypoints[338].y,face.keypoints[338].x, face.keypoints[338].y,face.keypoints[10].x, face.keypoints[10].y);
     endShape();
     //eyes
     fill(0)
     ellipse(rightEyebrowCenterX, rightEyebrowCenterY*1.1, rightEyebrowHeight*1.4, rightEyebrowHeight*1.4)
     ellipse(leftEyebrowCenterX, leftEyebrowCenterY*1.1, leftEyebrowHeight*1.4, leftEyebrowHeight*1.4)
     //mouth
-    fill(122, 31, 31, 200)
+    fill(79, 0, 3, 150)
     let NoseSize=dist(face.keypoints[0].x, face.keypoints[0].y, face.keypoints[17].x, face.keypoints[17].y)
     ellipse(face.keypoints[4].x, face.keypoints[4].y, NoseSize*0.9, NoseSize*1.1)
     
