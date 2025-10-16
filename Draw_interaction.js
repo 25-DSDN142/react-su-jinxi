@@ -1,6 +1,6 @@
 // ----=  HANDS  =----
 function prepareInteraction() {
-  bgImage = loadImage('/images/background.png');
+  bgImage = loadImage('/images/background.png');// the bakground image generated with Copilot AI
 }
 
 function drawInteraction(faces, hands) {
@@ -37,7 +37,7 @@ image(bgImage, 0, 0, width, height);
       ['middle', 'middle_finger_mcp', 'middle_finger_pip', 'middle_finger_dip', 'middle_finger_tip', '💀'],
       ['ring', 'ring_finger_mcp', 'ring_finger_pip', 'ring_finger_dip', 'ring_finger_tip', '🎃'],
       ['pinky', 'pinky_finger_mcp', 'pinky_finger_pip', 'pinky_finger_dip', 'pinky_finger_tip', '☠️']
-    ];
+    ];// finger emojis improved with help from ChatGPT
 
     let extendedFingers=0;
 
@@ -118,6 +118,7 @@ image(bgImage, 0, 0, width, height);
     let faceCenterY = face.faceOval.centerY;
     let faceWidth = face.faceOval.width;
     let faceheight = face.faceOval.height;
+    
     //face
     fill(255, 255, 255, 120)
     stroke(0)
