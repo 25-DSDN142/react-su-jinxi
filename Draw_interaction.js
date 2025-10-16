@@ -148,7 +148,7 @@ image(bgImage, 0, 0, width, height);
     ellipse(rightEyebrowCenterX, rightEyebrowCenterY*1.1, rightEyebrowHeight*1.4, rightEyebrowHeight*1.4)
     ellipse(leftEyebrowCenterX, leftEyebrowCenterY*1.1, leftEyebrowHeight*1.4, leftEyebrowHeight*1.4)
     //mouth
-    fill(79, 0, 3, 150)
+    fill(92, 13, 13, 180)
     let NoseSize=dist(face.keypoints[0].x, face.keypoints[0].y, face.keypoints[17].x, face.keypoints[17].y)
     ellipse(face.keypoints[4].x, face.keypoints[4].y, NoseSize*0.9, NoseSize*1.1)
     
